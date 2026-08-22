@@ -28,7 +28,7 @@ under `prefect-port/`.
 📉 696 Python lines → **559 Java lines**<br>
 📁 7 files → **10 files**<br>
 ⚡ 29,297 → **614** nanoseconds to work out one reuse key<br>
-🎯 34 of 34 → **34 of 34** comparisons giving the same answer<br>
+🎯 38 of 38 → **38 of 38** comparisons giving the same answer<br>
 🧪 not measured → **22 of 22** deliberate breakages caught by a check
 
 Full method and the numbers that did *not* make this list:
@@ -38,9 +38,9 @@ Full method and the numbers that did *not* make this list:
 
 ## What it took to build
 
-⏱️ **1.2 hours** from the first command to the published repository, **1.2** of them active<br>
-💬 **230** exchanges with the model<br>
-✍️ **240,240** tokens written by the model, **41,902,276** counting everything sent and re-sent<br>
+⏱️ **1.5 hours** from the first command to the published repository, **1.5** of them active<br>
+💬 **268** exchanges with the model<br>
+✍️ **288,254** tokens written by the model, **55,549,727** counting everything sent and re-sent<br>
 🙋 **0** questions to a human<br>
 🧪 **80** tests
 

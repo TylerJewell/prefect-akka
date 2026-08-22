@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import io.akka.prefect.domain.Backoff;
 import io.akka.prefect.domain.CachePolicy;
 import io.akka.prefect.domain.JsonValue;
 import io.akka.prefect.domain.RetryDecision;
@@ -57,6 +58,7 @@ public final class BenchRunner {
         case "cache-key" -> out.set(name, cacheKeyAnswer(workload));
         case "retry-sequence" -> out.set(name, retryAnswer(workload));
         case "state-sequence" -> out.set(name, stateSequenceAnswer(workload));
+        case "backoff" -> out.set(name, backoffAnswer(workload));
         case "arrival-order" -> out.set(name, arrivalOrderAnswer(workload));
         default -> throw new IllegalArgumentException("Unknown workload kind in " + name);
       }
@@ -125,6 +127,14 @@ public final class BenchRunner {
     }
     states.add(node);
     return record.record(state);
+  }
+
+  private static ObjectNode backoffAnswer(JsonNode workload) {
+    var answer = JSON.createObjectNode();
+    var delays = answer.putArray("delays");
+    Backoff.exponential(workload.get("factor").asDouble(), workload.get("retries").asInt())
+        .forEach(delays::add);
+    return answer;
   }
 
   private static ObjectNode stateSequenceAnswer(JsonNode workload) {
